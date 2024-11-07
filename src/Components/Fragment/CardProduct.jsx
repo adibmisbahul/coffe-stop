@@ -4,13 +4,13 @@ const Header = (props) => {
   const { image } = props;
   return (
     <div className="flex justify-center h-36">
-      <Image
+      <img
         src={image}
         alt="kopi"
         className="object-cover aspect-square rounded-2xl"
         width={150}
         height={150}
-      />
+      ></img>
     </div>
   );
 };

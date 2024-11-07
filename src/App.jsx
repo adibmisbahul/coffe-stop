@@ -1,12 +1,10 @@
-import { useState } from "react";
 import "./App.css";
+import Dashboard from "./pages/dashboard";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1 className="text-black">ini tailwind</h1>
+      <Dashboard />
     </>
   );
 }
