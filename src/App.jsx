@@ -1,12 +1,22 @@
 import "./App.css";
-import Dashboard from "./pages/dashboard";
-import Admin from "./pages/Admin";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+// import Dashboard from "./pages/dashboard";
+// import Admin from "./pages/Admin";
+
+const Admin = lazy(() => import("./pages/Admin"));
+const Dashboard = lazy(() => import("./pages/dashboard"));
 
 function App() {
   return (
-    <>
-      <Admin />
-    </>
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 

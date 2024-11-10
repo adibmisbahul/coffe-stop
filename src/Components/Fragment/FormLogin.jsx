@@ -19,12 +19,12 @@ const FormLogin = () => {
       body: JSON.stringify(loginData),
     });
     const data = await response.json();
-    const userData = data.data[0].username;
-    if (userData === null) {
-      alert("username null");
+    if (data.message === "success") {
+      const userData = data.data[0].username;
+      window.location.href = "/admin";
+      localStorage.setItem("name", userData);
     } else {
-      localStorage.setItem("nama", userData);
-      console.log(userData);
+      alert("login failed");
     }
   };
 
