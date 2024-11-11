@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+// #====================================================#
 import SideBar from "../Components/Fragment/Sidebar";
-
 import CardMenu from "../Components/Fragment/CardMenu";
-
+import CardCart from "../Components/Fragment/CardCart";
+// #====================================================#
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
@@ -37,13 +38,21 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="p-2 flex items-center justify-start w-full h-[99.7vh] bg-gray-100 ">
+    <div className="flex items-center justify-start w-full p-2 overflow-hidden max-h-sreen bg-slate-50">
       <SideBar />
-      <div className="flex flex-wrap p-5 w-[70%] gap-5">
+      <div
+        className="flex flex-wrap p-5 w-[70%] justify-center gap-5 h-[97vh] overflow-x-auto [&::-webkit-scrollbar]:w-2 
+  [&::-webkit-scrollbar-track]:bg-gray-100 
+  [&::-webkit-scrollbar-thumb]:bg-gray-300
+  dark:[&::-webkit-scrollbar-track]:bg-inherit 
+  dark:[&::-webkit-scrollbar-thumb]:bg-blue-600 [&::-webkit-scrollbar-thumb]:rounded-xl "
+      >
         {products.map((item) => {
           console.log("item:", item);
           return (
             <CardMenu
+              key={item.id}
+              image={item.image}
               title={item.title}
               price={Intl.NumberFormat("id-ID", {
                 style: "currency",
@@ -54,14 +63,17 @@ const Dashboard = () => {
           );
         })}
       </div>
-      <div className="w-[20%] h-[90vh] ">
+      <div className="w-[25%] h-[97vh] flex flex-col items-center ">
+        <h1 className="font-bold">Invoice</h1>
         {cart.map((item) => {
           return (
-            <div className="" key={item.id}>
-              <h1>{item.title}</h1>
-              <h1>{item.price}</h1>
-              <button onClick={() => handleRemoveFromCart(item)}>-</button>
-            </div>
+            <CardCart
+              key={item.id}
+              image={item.image}
+              title={item.title}
+              price={item.price}
+              click={() => handleRemoveFromCart(item)}
+            />
           );
         })}
         <h2>Total Price: {calculateTotalPrice()}</h2>
