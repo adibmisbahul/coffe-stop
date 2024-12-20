@@ -8,16 +8,31 @@ app.use(express.json());
 
 const useConfig = "use ns belajar db coffe;";
 
-app.get("/product", async (req, res) => {
+app.get("/use/:select", async (req, res) => {
   try {
+    const { select } = req.params;
     const db = await getDb();
-    const sql = useConfig + "select * from coffe; ";
+    const sql = useConfig + `select * from ${select}; `;
+    console.log(sql);
     const users = await db.query(sql);
     res.json(users);
   } catch (error) {
     console.error("Error fetching users:", error.message);
     res.status(500).json({ error: "Failed to fetch users" });
   }
+});
+
+app.get("/search/:title", async (req, res) => {
+  try {
+    const db = await getDb();
+    const { title } = req.params;
+    const sql =
+      useConfig +
+      `select * from coffe where title = string::lowercase("${title}");`;
+    console.log(sql);
+    const searchProduct = await db.query(sql);
+    res.json(searchProduct);
+  } catch (error) {}
 });
 
 app.get("/users/:id", async (req, res) => {

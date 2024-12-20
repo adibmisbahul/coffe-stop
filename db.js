@@ -1,11 +1,11 @@
 const Surreal = require("surrealdb").default;
 
 const surrealConfig = {
-  url: "url surreadb",
-  username: "usrname....",
-  password: "password....",
-  namespace: "namespace....",
-  database: "database....",
+  url: "http://127.0.0.1:8000",
+  username: "coffe",
+  password: "coffe",
+  namespace: "belaja",
+  database: "coffe",
 };
 
 const getDb = async (query) => {
