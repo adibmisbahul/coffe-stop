@@ -16,6 +16,7 @@
     "express": "^4.21.1",
     "nodemon": "^3.1.7",
     "surrealdb": "^1.0.6",
+    "surrealdb.js": "^1.0.0",
     "ws": "^8.18.0"
   }
 }
