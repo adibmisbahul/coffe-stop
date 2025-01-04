@@ -67,6 +67,7 @@ const Admin = () => {
 
   const options = {
     title: "Revenue",
+    title: "Data Karyawan",
     legend: { position: "none" },
     animation: {
       duration: 500,
@@ -94,6 +95,12 @@ const Admin = () => {
     <div className="flex flex-col justify-center w-full h-full gap-4 p-5">
       <SideBarAdmin />
       {/* <div className="flex flex-wrap justify-center gap-5">
+  console.log(dayName); // Example: "Wednesday"
+
+  return (
+    <div className="flex flex-col justify-center w-full h-full gap-4 p-5">
+      <div className="flex flex-wrap justify-center gap-5">
+
         <CardAdmin data={dayName} />
         <CardAdmin title={"Total Product"} data={product.length} />
         <CardAdmin title={"Total Karyawan"} data={karyawan.length} />

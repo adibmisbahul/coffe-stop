@@ -13,6 +13,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getProdcut = async () => {
       const response = await axios.get("http://localhost:2134/use/coffe");
+
       const data = response.data[1];
       setProducts(data);
     };
@@ -108,6 +109,7 @@ const Dashboard = () => {
               <option value="qris">qris</option>
             </select>
           </div>
+
           <button className="w-full px-3 text-white transition duration-500 bg-blue-600 rounded-md h-9 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700">
             Confirm
           </button>
