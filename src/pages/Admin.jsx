@@ -67,7 +67,6 @@ const Admin = () => {
 
   const options = {
     title: "Revenue",
-    title: "Data Karyawan",
     legend: { position: "none" },
     animation: {
       duration: 500,
@@ -75,6 +74,13 @@ const Admin = () => {
     },
     bar: { groupWidth: "40%" },
     chartArea: { width: "70%", height: "70%" },
+    legend: {
+      position: "bottom", // Posisi (top, bottom, left, right, atau none)
+      textStyle: {
+        color: "#1a237e",
+        fontSize: 14,
+      },
+    },
   };
 
   const owner = localStorage.getItem("nama");
@@ -88,33 +94,56 @@ const Admin = () => {
     "Friday",
     "Saturday",
   ];
-  const dayName = days[date.getDay()];
-  console.log(dayName);
+
+  const today = new Date();
+  const day = today.getDate();
+  const monthIndex = today.getMonth() + 1;
+  const year = today.getFullYear();
+
+  const monthNames = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
+
+  const monthName = monthNames[monthIndex];
 
   return (
-    <div className="flex flex-col justify-center w-full h-full gap-4 p-5">
+    <div className="flex  justify-start w-full h-screen gap-4 bg-slate-100">
       <SideBarAdmin />
-      {/* <div className="flex flex-wrap justify-center gap-5">
-  console.log(dayName); // Example: "Wednesday"
-
-  return (
-    <div className="flex flex-col justify-center w-full h-full gap-4 p-5">
-      <div className="flex flex-wrap justify-center gap-5">
-
-        <CardAdmin data={dayName} />
-        <CardAdmin title={"Total Product"} data={product.length} />
-        <CardAdmin title={"Total Karyawan"} data={karyawan.length} />
-        <CardAdmin title={"haloo 👋"} data={owner} style={"flex gap-2"} />
+      <div className="flex flex-col justify-start gap-5 ">
+        <div className="pl-5 pt-6">
+          <h1 className="font-bold text-xl">Dashboard</h1>
+          <p className="text-gray-700 text-sm">{`${day}  ${monthName}  ${year}`}</p>
+        </div>
+        <div className="flex flex-col justify-center w-[80vw] h-full gap-4 ">
+          <div className="flex flex-wrap justify-start gap-5">
+            <CardAdmin title={"Total Product"} data={product.length} />
+            <CardAdmin title={"Total Karyawan"} data={karyawan.length} />
+            <CardAdmin title={"Total Karyawan"} data={karyawan.length} />
+            <CardAdmin title={"Total Karyawan"} data={karyawan.length} />
+            <CardAdmin title={"haloo 👋"} data={owner} style={"flex gap-2"} />
+          </div>
+          <div className="w-3/4 h-3/4 rounded-lg bg-white flex justify-center items-center ">
+            <Chart
+              chartType="ColumnChart"
+              width="100%"
+              height="55vh"
+              data={data1}
+              options={options}
+            />
+          </div>
+        </div>
       </div>
-      <div className="w-full h-full">
-        <Chart
-          chartType="ColumnChart"
-          width="100%"
-          height="55vh"
-          data={data1}
-          options={options}
-        />
-      </div> */}
     </div>
   );
 };
