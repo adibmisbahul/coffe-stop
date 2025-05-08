@@ -1,26 +1,24 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-// #====================================================#
-import SideBar from "../Components/Fragment/Sidebar";
 import CardMenu from "../Components/Fragment/CardMenu";
 import CardCart from "../Components/Fragment/CardCart";
-// #====================================================#
+import { getProduct } from "../services/services";
+import { payment } from "../services/services";
+import ModalInvoice from "../Components/Fragment/ModalInvoice";
+
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [modal, showModal] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("");
 
   useEffect(() => {
-    const getProdcut = async () => {
-      const response = await axios.get("http://localhost:2134/use/coffe");
-
-      const data = response.data[1];
-      setProducts(data);
+    const getDataProduct = async () => {
+      const result = await getProduct();
+      setProducts(result);
     };
-    getProdcut();
+    getDataProduct();
   }, []);
 
-  console.log(products);
   const handleAddToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
   };
@@ -39,95 +37,48 @@ const Dashboard = () => {
     return cart.reduce((total, item) => total + item.price, 0);
   };
 
-  const [selectedValue, setSelectedValue] = useState("");
+  console.log(calculateTotalPrice());
 
   const handleSelection = (event) => {
     const value = event.target.value;
-    setSelectedValue(value);
+    setPaymentMethod(value);
     console.log("Metode pembayaran yang dipilih:", value);
   };
 
-  const ModalInvoice = () => {
-    return (
-      <div className="w-[100%] min-h-full backdrop-blur-sm flex items-center justify-center absolute ">
-        <div className="w-[60vw] h-[80vh] bg-white border shadow p-3 rounded-md ">
-          <button
-            onClick={() => showModal(false)}
-            className="w-6 text-white bg-blue-600 rounded-full"
-          >
-            X
-          </button>
-          <div class="relative overflow-x-auto ">
-            <table class="w-full text-sm text-left rtl:text-right text-black ">
-              <thead class="text-xs text-gray-900 uppercase ">
-                <tr>
-                  <th scope="col" class="px-6 py-3">
-                    Product name
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    price
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    jumlah
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {cart.map((item) => {
-                  return (
-                    <tr class="bg-white ">
-                      <th
-                        scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
-                      >
-                        {item.title}
-                      </th>
-                      <td class="px-6 py-4">
-                        {Intl.NumberFormat("id-ID", {
-                          style: "currency",
-                          currency: "IDR",
-                        }).format(item.price)}
-                      </td>
-                      <td class="px-6 py-4">{item.id}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <div className="flex">
-            <h2 className="p-5 font-semibold">
-              Total Price: {calculateTotalPrice()}
-            </h2>
-            <select
-              name=""
-              onChange={handleSelection}
-              id="payment-method"
-              value={selectedValue}
-            >
-              <option value="cash">cash</option>
-              <option value="qris">qris</option>
-            </select>
-          </div>
+  const handlePayment = async () => {
+    try {
+      const paymentProces = await payment(
+        paymentMethod,
+        calculateTotalPrice(),
+        cart.map((item) => ({
+          product_id: item.id,
+          quantity: 10,
+        }))
+      );
 
-          <button className="w-full px-3 text-white transition duration-500 bg-blue-600 rounded-md h-9 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700">
-            Confirm
-          </button>
-        </div>
-      </div>
-    );
+      console.log(`payment succes`, paymentProces);
+    } catch (error) {
+      console.log("payment invalid");
+    }
   };
 
   const handleShowInvoice = () => {
     showModal(true);
   };
 
-  // #====================================================#
   return (
     <>
-      {modal && <ModalInvoice />}
+      {modal && (
+        <ModalInvoice
+          showModal={showModal}
+          cart={cart}
+          calculateTotalPrice={calculateTotalPrice}
+          handleSelection={handleSelection}
+          paymentMethod={paymentMethod}
+          handlePayment={handlePayment}
+        />
+      )}
       <div className="flex items-center justify-start w-full p-2 overflow-hidden max-h-sreen bg-slate-50">
-        <SideBar />
         <div
           className="flex flex-wrap p-5 w-[70%] justify-center gap-5 h-[97vh] overflow-x-auto [&::-webkit-scrollbar]:w-2 
   [&::-webkit-scrollbar-track]:bg-gray-100 

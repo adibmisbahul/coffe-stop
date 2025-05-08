@@ -8,7 +8,13 @@ const Dashboard = lazy(() => import("./pages/dashboard"));
 function App() {
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center w-full h-screen">
+            Loading...
+          </div>
+        }
+      >
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/admin" element={<Admin />} />

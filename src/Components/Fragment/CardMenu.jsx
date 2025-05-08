@@ -1,5 +1,5 @@
 const CardMenu = (props) => {
-  const { image, title, price, click = () => {}, key } = props;
+  const { image, title, price, click = () => {}, key, color } = props;
   return (
     <div className="flex flex-col gap-3 p-5 bg-white rounded shadow" key={key}>
       <img src={image} alt="" className="w-[10vw] h-[28vh] rounded bg-cover" />

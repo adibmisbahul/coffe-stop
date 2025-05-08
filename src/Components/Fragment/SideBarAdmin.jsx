@@ -13,14 +13,7 @@ const navigasi = [
 
 const SideBarAdmin = () => {
   return (
-    <div className="flex flex-col items-center bg-white h-screen">
-      <div className="flex items-center gap-3 mt-3 p-5">
-        <img src={Avatar} alt="" className="w-14" />
-        <div className="">
-          <h1 className="font-semibold">Adib Misbahul </h1>
-          <p className="text-sm">Owner</p>
-        </div>
-      </div>
+    <div className="flex flex-col items-center h-screen bg-white ">
       <div className="mt-20">
         {navigasi.map((a, b) => {
           return (
@@ -30,6 +23,13 @@ const SideBarAdmin = () => {
             </div>
           );
         })}
+      </div>
+      <div className="flex items-center gap-3 p-5 mt-3">
+        <img src={Avatar} alt="" className="w-14" />
+        <div className="">
+          <h1 className="font-semibold">Adib Misbahul </h1>
+          <p className="text-sm">Owner</p>
+        </div>
       </div>
     </div>
   );

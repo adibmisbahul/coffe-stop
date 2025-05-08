@@ -1,8 +1,15 @@
 import React from "react";
+import { motion } from "motion/react";
 import { Chart } from "react-google-charts";
 import { useEffect, useState } from "react";
+
 import CardAdmin from "../Components/Fragment/CardAdmin";
 import SideBarAdmin from "../Components/Fragment/SideBarAdmin";
+
+import peopleIcon from "../assets/image/fluent--people.svg";
+import foodIcon from "../assets/image/food.svg";
+import dollarIcon from "../assets/image/dollar.svg";
+import transactionIcon from "../assets/image/transaction.svg";
 
 const Admin = () => {
   const [karyawan, setKaryawan] = useState([]);
@@ -75,7 +82,7 @@ const Admin = () => {
     bar: { groupWidth: "40%" },
     chartArea: { width: "70%", height: "70%" },
     legend: {
-      position: "bottom", // Posisi (top, bottom, left, right, atau none)
+      position: "bottom",
       textStyle: {
         color: "#1a237e",
         fontSize: 14,
@@ -118,32 +125,34 @@ const Admin = () => {
   const monthName = monthNames[monthIndex];
 
   return (
-    <div className="flex  justify-start w-full h-screen gap-4 bg-slate-100">
-      <SideBarAdmin />
-      <div className="flex flex-col justify-start gap-5 ">
-        <div className="pl-5 pt-6">
-          <h1 className="font-bold text-xl">Dashboard</h1>
-          <p className="text-gray-700 text-sm">{`${day}  ${monthName}  ${year}`}</p>
-        </div>
-        <div className="flex flex-col justify-center w-[80vw] h-full gap-4 ">
-          <div className="flex flex-wrap justify-start gap-5">
-            <CardAdmin title={"Total Product"} data={product.length} />
-            <CardAdmin title={"Total Karyawan"} data={karyawan.length} />
-            <CardAdmin title={"Total Karyawan"} data={karyawan.length} />
-            <CardAdmin title={"Total Karyawan"} data={karyawan.length} />
-            <CardAdmin title={"haloo 👋"} data={owner} style={"flex gap-2"} />
-          </div>
-          <div className="w-3/4 h-3/4 rounded-lg bg-white flex justify-center items-center ">
-            <Chart
-              chartType="ColumnChart"
-              width="100%"
-              height="55vh"
-              data={data1}
-              options={options}
-            />
-          </div>
-        </div>
+    <div className="flex w-auto h-[99.7vh]">
+      <div className="basis-[20%]">
+        <SideBarAdmin />
       </div>
+      <div className="basis-[60%] flex justify-evenly mt-4">
+        <CardAdmin
+          title={"Total order"}
+          data={120}
+          color={"bg-fuchsia-400"}
+          icon={foodIcon}
+          detailText={"Total order hari ini"}
+        />
+        <CardAdmin
+          title={"margin"}
+          data={230000}
+          color={"bg-blue-400"}
+          icon={foodIcon}
+          detailText={"margin hari ini"}
+        />
+        <CardAdmin
+          title={"halo"}
+          data={120}
+          color={"bg-emerald-400"}
+          icon={foodIcon}
+          detailText={"Total order hari ini"}
+        />
+      </div>
+      <div className="bg-green-200 basis-[20%]">juga</div>
     </div>
   );
 };

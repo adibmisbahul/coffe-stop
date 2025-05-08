@@ -1,0 +1,74 @@
+// const ModalInvoice = () => {
+  //   return (
+  //     <div className="w-[100%] min-h-full backdrop-blur-sm flex items-center justify-center absolute ">
+  //       <div className="w-[60vw] h-[80vh] bg-white border shadow p-3 rounded-md ">
+  //         <button
+  //           onClick={() => showModal(false)}
+  //           className="w-6 text-white bg-blue-600 rounded-full"
+  //         >
+  //           X
+  //         </button>
+  //         <div class="relative overflow-x-auto ">
+  //           <table class="w-full text-sm text-left text-black rtl:text-right ">
+  //             <thead class="text-xs text-gray-900 uppercase ">
+  //               <tr>
+  //                 <th scope="col" class="px-6 py-3">
+  //                   Product name
+  //                 </th>
+  //                 <th scope="col" class="px-6 py-3">
+  //                   price
+  //                 </th>
+  //                 <th scope="col" class="px-6 py-3">
+  //                   jumlah
+  //                 </th>
+  //               </tr>
+  //             </thead>
+  //             <tbody>
+  //               {cart.map((item) => {
+  //                 return (
+  //                   <tr class="bg-white ">
+  //                     <th
+  //                       scope="row"
+  //                       class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+  //                     >
+  //                       {item.title}
+  //                     </th>
+  //                     <td class="px-6 py-4">
+  //                       {Intl.NumberFormat("id-ID", {
+  //                         style: "currency",
+  //                         currency: "IDR",
+  //                       }).format(item.price)}
+  //                     </td>
+  //                     <td class="px-6 py-4">{item.id}</td>
+  //                   </tr>
+  //                 );
+  //               })}
+  //             </tbody>
+  //           </table>
+  //         </div>
+  //         <div className="flex">
+  //           <h2 className="p-5 font-semibold">
+  //             Total Price: {calculateTotalPrice()}
+  //           </h2>
+  //           <select
+  //             name=""
+  //             onChange={handleSelection}
+  //             id="payment-method"
+  //             value={paymentMethod}
+  //           >
+  //             <option value="cash">cash</option>
+  //             <option value="qris">qris</option>
+  //             <option value="debit">debit</option>
+  //           </select>
+  //         </div>
+
+  //         <button
+  //           className="w-full px-3 text-white transition duration-500 bg-blue-600 rounded-md h-9 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700"
+  //           onClick={handlePayment}
+  //         >
+  //           Confirm
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // };
