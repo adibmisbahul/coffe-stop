@@ -4,6 +4,7 @@ import React, { Suspense, lazy } from "react";
 
 const Admin = lazy(() => import("./pages/Admin"));
 const Dashboard = lazy(() => import("./pages/dashboard"));
+const TransactionPage = lazy(() => import("./pages/Transaction"));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/transaction" element={<TransactionPage />} />
         </Routes>
       </Suspense>
     </Router>

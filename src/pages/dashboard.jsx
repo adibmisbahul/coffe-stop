@@ -11,11 +11,12 @@ const Dashboard = () => {
   const [modal, showModal] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("");
 
+  const getDataProduct = async () => {
+    const result = await getProduct();
+    setProducts(result);
+  };
+
   useEffect(() => {
-    const getDataProduct = async () => {
-      const result = await getProduct();
-      setProducts(result);
-    };
     getDataProduct();
   }, []);
 

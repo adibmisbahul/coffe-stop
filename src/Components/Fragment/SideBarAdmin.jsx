@@ -6,20 +6,21 @@ import dashboardIcon from "../../assets/image/dashboard.svg";
 
 const navigasi = [
   { icon: dashboardIcon, text: "Dashboard", nav: "" },
-  { icon: TeamsIcon, text: "Teams", nav: "" },
-  { icon: TransactionIcon, text: "Transaction", nav: "" },
+  { icon: TeamsIcon, text: "Sell report", nav: "" },
+  { icon: TransactionIcon, text: "Transaction", nav: "/transaction" },
   { icon: ProductIcon, text: "Product", nav: "" },
+  { icon: ProductIcon, text: "my team", nav: "" },
 ];
 
 const SideBarAdmin = () => {
   return (
-    <div className="flex flex-col items-center h-screen bg-white ">
-      <div className="mt-20">
+    <div className="flex flex-col items-center h-screen bg-white justify-evenly">
+      <div className="">
         {navigasi.map((a, b) => {
           return (
-            <div className="flex gap-3 mt-5 font-semibold">
+            <div className="flex gap-3 mt-[8vh] font-semibold">
               <img src={a.icon} alt="" />
-              <h1>{a.text}</h1>
+              <a href={a.nav}>{a.text}</a>
             </div>
           );
         })}
