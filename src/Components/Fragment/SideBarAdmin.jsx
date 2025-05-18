@@ -14,23 +14,17 @@ const navigasi = [
 
 const SideBarAdmin = () => {
   return (
-    <div className="flex flex-col items-center h-screen bg-white justify-evenly">
+    <div className="flex flex-col items-center justify-center w-full h-full bg-white border border-gray-400 rounded-xl">
       <div className="">
         {navigasi.map((a, b) => {
           return (
             <div className="flex gap-3 mt-[8vh] font-semibold">
-              <img src={a.icon} alt="" />
-              <a href={a.nav}>{a.text}</a>
+              <a href={a.nav}>
+                <img src={a.icon} alt="" />
+              </a>
             </div>
           );
         })}
-      </div>
-      <div className="flex items-center gap-3 p-5 mt-3">
-        <img src={Avatar} alt="" className="w-14" />
-        <div className="">
-          <h1 className="font-semibold">Adib Misbahul </h1>
-          <p className="text-sm">Owner</p>
-        </div>
       </div>
     </div>
   );

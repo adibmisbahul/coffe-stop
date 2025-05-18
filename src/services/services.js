@@ -14,3 +14,8 @@ export const payment = async (paymen_method, amount, items) => {
   });
   return response.data;
 };
+
+export const getDataTransaction = async () => {
+  const response = await axios.get(API_URL + "/detailtransaction/transaction");
+  return response.data;
+};
